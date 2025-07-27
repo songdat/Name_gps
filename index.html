@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Send Student Location</title>
+</head>
+<body>
+  <h2>กรอกชื่อและส่งตำแหน่ง</h2>
+  <input type="text" id="studentName" placeholder="ชื่อ นักเรียน">
+  <button onclick="sendLocation()">Get GPS & Send</button>
+
+  <p id="status"></p>
+
+  <script>
+    function sendLocation() {
+      const name = document.getElementById('studentName').value;
+      if (!name) {
+        alert('กรุณากรอกชื่อ');
+        return;
+      }
+      if (!navigator.geolocation) {
+        alert('อุปกรณ์นี้ไม่รองรับ GPS');
+        return;
+      }
+      document.getElementById('status').innerText = 'กำลังขอพิกัด...';
+
+      navigator.geolocation.getCurrentPosition(function(position) {
+        const data = {
+          name: name,
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude
+        };
+
+        fetch('https://script.google.com/macros/s/AKfycbybmz1YZDpi7SlX6oQz3NEO38EmQcO5Ct219hprcUlGzFe8tPMZOOVzk3pw3rX5NxcL/exec', {
+          method: 'POST',
+          mode: 'no-cors',  // ป้องกันปัญหา CORS เบื้องต้น
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        })
+        .then(() => {
+          document.getElementById('status').innerText = 'ส่งข้อมูลเรียบร้อย';
+        })
+        .catch((error) => {
+          document.getElementById('status').innerText = 'เกิดข้อผิดพลาด: ' + error;
+        });
+
+      }, function(error) {
+        document.getElementById('status').innerText = 'ไม่สามารถรับพิกัด: ' + error.message;
+      });
+    }
+  </script>
+</body>
+</html>
