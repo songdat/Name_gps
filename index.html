@@ -4,8 +4,8 @@
   <title>Send Student Location</title>
 </head>
 <body>
-  <h2>กรอกชื่อ-สกุล,ชื่อเล่น,และระดับชั้น(ตัวอย่างเช่น นายใจดี สุขใจ บิ๊ก 1/4)</h2>
-  <input type="text" id="studentName" placeholder="ชื่อ-สกุล,ชื่อเล่น,และระดับชั้น">
+  <h2>กรอกชื่อและส่งตำแหน่ง</h2>
+  <input type="text" id="studentName" placeholder="ชื่อ นักเรียน">
   <button onclick="sendLocation()">Get GPS & Send</button>
 
   <p id="status"></p>
@@ -30,7 +30,7 @@
           longitude: position.coords.longitude
         };
 
-        fetch('https://script.google.com/macros/s/AKfycbyWFmdv0AxTezbGhqptwefYvmE5iKVmmd0m7XOh9TI2mPfWlKVdF8oXry_IYrizGmCR/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbybmz1YZDpi7SlX6oQz3NEO38EmQcO5Ct219hprcUlGzFe8tPMZOOVzk3pw3rX5NxcL/exec', {
           method: 'POST',
           mode: 'no-cors',  // ป้องกันปัญหา CORS เบื้องต้น
           headers: {
