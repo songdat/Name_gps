@@ -1,3 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Student GPS Sender</title>
+
+<style>
+
+body {
+
+  font-family: Arial;
+  text-align: center;
+  background: #f2f2f2;
+  padding: 30px;
+
+}
+
+h2 {
+
+  color: #333;
+
+}
+
+input {
+
+  width: 90%;
+  max-width: 400px;
+
+  padding: 12px;
+
+  font-size: 18px;
+
+}
+
+button {
+
+  margin-top: 15px;
+
+  padding: 12px 25px;
+
+  font-size: 18px;
+
+  cursor: pointer;
+
+}
+
+#status {
+
+  margin-top: 20px;
+
+  font-size: 18px;
+
+  color: green;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h2>
+
+กรอกชื่อ-สกุล ชื่อเล่น ระดับชั้น
+
+</h2>
+
+<input
+type="text"
+id="studentName"
+placeholder="เช่น นายสุขใจ ใจบุญ บิ๊ก 1/2">
+
+<br>
+
+<button onclick="sendLocation()">
+
+ส่งตำแหน่ง GPS
+
+</button>
+
+<p id="status"></p>
+
 <script>
 
 async function sendLocation() {
@@ -104,3 +193,7 @@ async function sendLocation() {
 }
 
 </script>
+
+</body>
+
+</html>
